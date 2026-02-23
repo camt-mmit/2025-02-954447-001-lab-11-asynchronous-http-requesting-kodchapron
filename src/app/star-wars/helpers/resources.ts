@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { Film, Person, ResultsList } from '../types';
+import { Film, Person, Planet, ResultsList } from '../types';
 
 export async function fetchResource<T>(url: string, abortSignal?: AbortSignal | null): Promise<T>;
 export async function fetchResource<T>(
@@ -15,7 +15,7 @@ export async function fetchResource<T>(
     return null;
   }
 
-  const res = await fetch(url, { signal: abortSignal });
+  const res = await fetch(url, { signal: abortSignal, cache: 'force-cache' });
 
   return await res.json();
 }
@@ -47,4 +47,15 @@ export function filmsListResource(params: () => ResultsListParams) {
 
 export function filmResource(id: () => string) {
   return httpResource<Film>(() => `${entryPointURL}/films/${id()}`);
+}
+
+export function planetsListResource(params: () => ResultsListParams) {
+  return httpResource<ResultsList<Planet>>(() => ({
+    url: `${entryPointURL}/planets`,
+    params: { ...params() },
+  }));
+}
+
+export function planetResource(id: () => string) {
+  return httpResource<Planet>(() => `${entryPointURL}/planets/${id()}`);
 }

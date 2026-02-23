@@ -8,6 +8,7 @@ import { PlanetsListPage } from './pages/planets-list-page/planets-list-page';
 import { StarWarsRoot } from './pages/star-wars-root/star-wars-root';
 import { PeopleHttpResourceListPage } from './pages/people-http-resource-list-page/people-http-resource-list-page';
 import { PeopleFetchedListPage } from './pages/people-fetched-list-page/people-fetched-list-page';
+import { SettingsPage } from './pages/settings-page/settings-page';
 
 export default [
   {
@@ -50,6 +51,8 @@ export default [
           { path: ':id', component: PlanetViewPage },
         ],
       },
+
+      { path: 'settings', component: SettingsPage },
     ],
   },
 ] as Routes;
