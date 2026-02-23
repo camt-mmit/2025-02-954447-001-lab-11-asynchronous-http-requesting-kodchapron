@@ -1,0 +1,458 @@
+/* You can add global styles to this file, and also import other style files */
+@use './scss/common';
+@use './scss/material';
+
+// Material Symbols
+.material-symbols-outlined {
+  font-variation-settings: var(--app-icon-variation);
+}
+
+// Star Wars fonts from Google Fonts
+// เพิ่มใน index.html:
+// <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+:root {
+  // == Star Wars Theme Colors ==================================================
+  --sys-brand-primary-color: #ffe84d; // Lightsaber yellow
+  --sys-brand-secondary-color: #4bd5ee; // Lightsaber blue
+
+  --sys-font: 'Exo 2', 'Noto Sans Thai Looped', sans-serif;
+  --sys-monospace-font: 'Roboto Mono', monospace;
+  --sys-font-size: 16px;
+
+  --sys-surface-color: light-dark(#0d0d1a, #07070f);
+  --sys-surface-container-color: light-dark(#1a1a35, #12122a);
+  --sys-on-surface-color: light-dark(#c8c8e8, #e8e8ff);
+  --sys-warn-color: #ff4444;
+  --sys-on-warn-color: #ffffff;
+
+  --sys-gap: 4px;
+  --sys-column-gap: calc(2 * var(--sys-gap));
+  --sys-row-gap: var(--sys-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --sys-primary-color: light-dark(
+    var(--sys-brand-primary-color),
+    color-mix(in srgb, var(--sys-brand-primary-color), #ffffff 15%)
+  );
+  --sys-on-primary-color: #0a0a0a;
+
+  --sys-secondary-color: light-dark(
+    var(--sys-brand-secondary-color),
+    color-mix(in srgb, var(--sys-brand-secondary-color), #ffffff 15%)
+  );
+  --sys-on-secondary-color: #0a0a0a;
+
+  --sys-icon-variation: #{material.appearance()};
+
+  // == Application properties ==================================================
+  --app-font: var(--sys-font);
+  --app-monospace-font: var(--sys-monospace-font);
+  --app-font-size: var(--sys-font-size);
+
+  --app-surface-color: var(--sys-surface-color);
+  --app-surface-container-color: var(--sys-surface-container-color);
+  --app-on-surface-color: var(--sys-on-surface-color);
+  --app-warn-color: var(--sys-warn-color);
+  --app-on-warn-color: var(--sys-on-warn-color);
+
+  --app-gap: var(--sys-gap);
+  --app-column-gap: var(--sys-column-gap);
+  --app-row-gap: var(--sys-row-gap);
+
+  // ---- Theme Properties --------------------------------------------------
+  --app-primary-color: var(--sys-primary-color);
+  --app-on-primary-color: var(--sys-on-primary-color);
+
+  --app-secondary-color: var(--sys-secondary-color);
+  --app-on-secondary-color: var(--sys-on-secondary-color);
+
+  --app-icon-variation: var(--sys-icon-variation);
+
+  color-scheme: dark;
+
+  color: var(--app-on-surface-color);
+  background-color: var(--app-surface-color);
+
+  font-family: var(--app-font);
+  font-size: 16px;
+
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+
+  &[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  &[data-theme='dark'] {
+    color-scheme: dark;
+  }
+}
+
+// ============================================================
+// Star field background
+// ============================================================
+body {
+  position: relative;
+  min-height: 100vh;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse at 20% 50%, #0d1b4b 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, #1a0a3d 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, #0a1a2e 0%, transparent 50%), #07070f;
+  }
+
+  // Stars layer 1 — small
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 60%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 30%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 75%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 70%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 85%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 45%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 5% 25%, rgba(255, 232, 77, 0.6) 0%, transparent 100%),
+      radial-gradient(2px 2px at 75% 55%, rgba(75, 213, 238, 0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 45% 90%, rgba(255, 232, 77, 0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 5%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 65%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 85%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 5%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 8% 90%, rgba(255, 255, 255, 0.9) 0%, transparent 100%);
+    animation: twinkle 6s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+// ============================================================
+// Global resets
+// ============================================================
+:root,
+body {
+  @include common.layout-block();
+  height: 100%;
+}
+
+input,
+textarea {
+  font-size: inherit;
+}
+
+// ============================================================
+// Utility classes (เหมือนเดิม แต่ปรับสีตาม theme)
+// ============================================================
+.app-cl-hidden {
+  visibility: hidden;
+}
+
+.app-cmp-flex-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & > .app-cl-flex {
+    flex: 1 0 auto;
+  }
+
+  & > .app-cl-meta {
+    @include common.layout-block();
+    display: inline-block;
+    margin-left: auto;
+  }
+}
+
+.app-cmp-button {
+  @layer {
+    & {
+      --_color: var(--app-primary-color);
+      --_on-color: var(--app-on-primary-color);
+      --_text-color: var(--_color);
+      --_border-color: var(--_text-color);
+      --_background-color: transparent;
+      --_on-hover-background-color: var(--app-surface-container-color);
+      --_border-style: 1px solid var(--_border-color);
+
+      &.app-cl-filled {
+        --_on-hover-background-color: color-mix(
+          in srgb,
+          var(--_background-color),
+          var(--app-surface-container-color) 25%
+        );
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+
+  cursor: pointer;
+
+  color: var(--_text-color);
+  background-color: var(--_background-color);
+  border: var(--_border-style);
+  border-radius: 4px;
+
+  padding: 0.5em 1ch;
+
+  font-family: var(--app-font);
+  font-size: var(--app-font-size);
+  font-weight: bold;
+  text-decoration: none;
+
+  letter-spacing: 0.05em;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover:not(:is(:disabled, a:not([href]))) {
+    background-color: var(--_on-hover-background-color);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--_color), transparent 50%);
+  }
+
+  &:is(:disabled, a:not([href])) {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+}
+
+.app-cmp-nav {
+  @layer {
+    & {
+      --_font: var(--app-font);
+      --_font-size: var(--app-font-size);
+      --_color: var(--app-primary-color);
+      --_on-color: var(--app-on-primary-color);
+      --_text-color: var(--_color);
+      --_border-color: var(--_text-color);
+      --_background-color: transparent;
+      --_filling-color: var(--app-surface-container-color);
+      --_column-gap: var(--app-column-gap);
+      --_row-gap: var(--app-row-gap);
+      --_border-style: 1px solid var(--_border-color);
+
+      &.app-cl-filled {
+        --_filling-color: color-mix(
+          in srgb,
+          var(--_background-color),
+          var(--app-surface-container-color) 25%
+        );
+
+        & > *:not(.app-st-active):not(:hover) {
+          --_text-color: var(--app-on-surface-color);
+        }
+      }
+    }
+  }
+
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: var(--_column-gap);
+  row-gap: var(--_row-gap);
+
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  list-style: none;
+
+  & > * {
+    @include common.layout-block();
+    display: inline-block;
+
+    & > :is(a, button) {
+      @include common.layout-block();
+
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: var(--_column-gap);
+
+      height: 100%;
+      padding: 0.25em 1ch;
+      cursor: pointer;
+
+      color: var(--_text-color);
+      background-color: var(--_background-color);
+
+      font-family: var(--_font);
+      font-size: var(--_font-size);
+      font-weight: bold;
+      letter-spacing: 0.05em;
+
+      border: var(--_border-style);
+      border-radius: 4px;
+      overflow: hidden;
+
+      text-decoration: none;
+      white-space: nowrap;
+
+      transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    &.app-st-active {
+      & > :is(a, button) {
+        background-color: color-mix(in srgb, var(--_color), transparent 70%); // ← เพิ่มความเข้ม
+        box-shadow:
+          0 0 12px color-mix(in srgb, var(--_color), transparent 30%),
+          inset 0 0 8px color-mix(in srgb, var(--_color), transparent 60%); // ← glow ข้างใน
+        color: var(--_color); // ← ตัวหนังสือเป็นสีเหลือง
+        border-color: var(--_color); // ← border สว่างขึ้น
+      }
+    }
+
+    &:hover:not(:is(.app-st-active, :has(> :is(a:not([href]), button:disabled)))) {
+      & > :is(a, button) {
+        background-color: color-mix(in srgb, var(--_color), transparent 70%);
+        box-shadow: 0 0 12px color-mix(in srgb, var(--_color), transparent 30%);
+        color: var(--_color); // ← เพิ่มนี้ ทำให้ตัวหนังสือสว่างขึ้น
+      }
+    }
+
+    &:has(> :is(a:not([href]), button:disabled)) {
+      & > :is(a, button) {
+        opacity: 0.25;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.app-cmp-link {
+  @layer {
+    & {
+      --_color: var(--app-on-surface-color);
+      --_on-hover-background-color: var(--app-surface-container-color);
+      --_icon-variation: var(--app-icon-variation);
+      --_forground-color: color-mix(in srgb, var(--_color), var(--app-surface-color));
+    }
+  }
+
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--_forground-color);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+
+  &::after {
+    content: 'link';
+    @include material.set-symbol();
+    font-size: inherit !important;
+    transform: translateY(20%);
+    margin-left: 0.5ch;
+  }
+
+  &:hover {
+    color: var(--app-primary-color);
+    background-color: var(--_on-hover-background-color);
+  }
+}
+
+.app-cmp-external-link {
+  @layer {
+    & {
+      --_color: var(--app-on-surface-color);
+      --_on-hover-background-color: var(--app-surface-container-color);
+      --_icon-variation: var(--app-icon-variation);
+      --_forground-color: color-mix(in srgb, var(--_color), var(--app-surface-color));
+    }
+  }
+
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--_forground-color);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+
+  &::after {
+    content: 'open_in_new';
+    @include material.set-symbol();
+    font-size: inherit !important;
+    transform: translateY(20%);
+    margin-left: 0.5ch;
+  }
+
+  &:hover {
+    color: var(--app-primary-color);
+    background-color: var(--_on-hover-background-color);
+  }
+}
+
+.app-cl-code,
+input[type='number'],
+.app-cl-number {
+  font-family: var(--app-monospace-font);
+}
+
+input[type='number'],
+.app-cl-number {
+  text-align: right;
+}
+
+@layer {
+  .app-cl-warn {
+    --_color: var(--app-warn-color);
+    --_on-color: var(--app-on-warn-color);
+  }
+
+  .app-cl-secondary {
+    --_color: var(--app-secondary-color);
+    --_on-color: var(--app-on-secondary-color);
+  }
+
+  .app-cl-filled {
+    --_text-color: var(--_on-color);
+    --_border-color: transparent;
+    --_background-color: var(--_color);
+    --_border-style: 0px solid var(--_border-color);
+  }
+}

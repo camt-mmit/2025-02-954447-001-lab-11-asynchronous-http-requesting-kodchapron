@@ -1,0 +1,93 @@
+<hr />
+<dl class="_data-view">
+  <dt>Name</dt>
+  <dd>
+    <a
+      href="https://www.google.com/search?q={{ data().name }} (Star Wars)"
+      target="_blank"
+      class="app-cmp-external-link"
+      >{{ data().name }}</a
+    >
+  </dd>
+
+  <dt>Diameter</dt>
+  <dd>
+    <span class="app-cl-number">{{ +data().diameter | number }}</span> km
+  </dd>
+
+  <dt>Rotation Period</dt>
+  <dd>
+    <span class="app-cl-number">{{ data().rotation_period }}</span> hr
+  </dd>
+
+  <dt>Orbital Period</dt>
+  <dd>
+    <span class="app-cl-number">{{ data().orbital_period }}</span> days
+  </dd>
+
+  <dt>Gravity</dt>
+  <dd>{{ data().gravity }}</dd>
+
+  <dt>Population</dt>
+  <dd>
+    <span class="app-cl-number">{{ +data().population | number }}</span>
+  </dd>
+
+  <dt>Climate</dt>
+  <dd>{{ data().climate }}</dd>
+
+  <dt>Terrain</dt>
+  <dd>{{ data().terrain }}</dd>
+
+  <dt>Surface Water</dt>
+  <dd>
+    <span class="app-cl-number">{{ data().surface_water }}</span> %
+  </dd>
+
+  <dt>Residents</dt>
+  <dd>
+    <ul>
+      @for (resident$ of asyncData().residents; track resident$) {
+        @if (resident$ | async; as resident) {
+          <li>
+            <a
+              [routerLink]="['people', resident.url | extractId]"
+              [relativeTo]="moduleRoute()"
+              class="app-cmp-link"
+              >{{ resident.name }}</a
+            >
+          </li>
+        } @else {
+          <li><span class="_status-loading">Loading</span></li>
+        }
+      }
+    </ul>
+  </dd>
+
+  <dt>Films</dt>
+  <dd>
+    <ul>
+      @for (film$ of asyncData().films; track film$) {
+        @if (film$ | async; as film) {
+          <li>
+            <a
+              [routerLink]="['films', film.url | extractId]"
+              [relativeTo]="moduleRoute()"
+              class="app-cmp-link"
+              >{{ film.title }}</a
+            >
+          </li>
+        } @else {
+          <li><span class="_status-loading">Loading</span></li>
+        }
+      }
+    </ul>
+  </dd>
+
+  <dt>Created</dt>
+  <dd>{{ data().created | date }}</dd>
+
+  <dt>Edited</dt>
+  <dd>{{ data().edited | date }}</dd>
+</dl>
+<hr />

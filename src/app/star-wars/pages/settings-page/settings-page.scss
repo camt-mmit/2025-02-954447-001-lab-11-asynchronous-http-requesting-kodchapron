@@ -1,0 +1,20 @@
+@use '../../scss/page';
+
+:host {
+  @include page.set-host-header();
+}
+
+._settings-fieldset {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+._actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
