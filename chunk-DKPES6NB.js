@@ -1,0 +1,1 @@
+import{Qa as i,Wb as o}from"./chunk-HAHWT3RH.js";var n=class e{visible=o();ngOnInit(){this.visible.emit()}static \u0275fac=function(t){return new(t||e)};static \u0275cmp=i({type:e,selectors:[["app-load-trigger"]],outputs:{visible:"visible"},decls:0,vars:0,template:function(t,r){},encapsulation:2,changeDetection:0})};export{n as LoadTrigger};
