@@ -4,4 +4,5 @@ export const routes: Routes = [
   { path: '', redirectTo: 'star-wars', pathMatch: 'full' },
 
   { path: 'star-wars', loadChildren: () => import('./star-wars/routes') },
+  { path: 'google', loadChildren: () => import('./google/routes') },
 ];

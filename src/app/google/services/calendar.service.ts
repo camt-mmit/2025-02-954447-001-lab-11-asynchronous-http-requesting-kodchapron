@@ -1,9 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class CalendarService {}
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, ResourceRef, inject } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';

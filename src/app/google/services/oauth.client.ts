@@ -300,7 +300,7 @@ export class OauthClient {
 
     const accessTokenData: AccessTokenData = {
       accessToken: accessTokenResponse.access_token,
-      tokeyType: accessTokenResponse.token_type,
+      tokenType: accessTokenResponse.token_type,
       expiresIn: accessTokenResponse.expires_in,
       scope: accessTokenResponse.scope,
     };
@@ -396,7 +396,7 @@ export class OauthClient {
     }
 
     return {
-      Authorization: `${accessTokenData.tokeyType} ${accessTokenData.accessToken}`,
+      Authorization: `${accessTokenData.tokenType} ${accessTokenData.accessToken}`,
     };
   }
 
