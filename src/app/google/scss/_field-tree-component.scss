@@ -12,5 +12,5 @@
 }
 
 ._data-form {
-  @include data.layout-data-form();
+  @include data.layout-data-form(8rem);
 }

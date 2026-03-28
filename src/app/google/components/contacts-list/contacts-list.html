@@ -1,0 +1,49 @@
+<div class="list-container">
+  <div class="toolbar">
+    <a routerLink="create" class="app-cmp-button app-cl-primary">
+      <i class="material-symbols-outlined">person_add</i> Contact
+    </a>
+    <div class="search-wrap">
+      <input
+        class="app-cmp-input"
+        type="text"
+        placeholder="Search..."
+        [value]="searchQuery()"
+        (input)="searchQuery.set($any($event.target).value)"
+      />
+      @if (searchQuery()) {
+        <button class="app-cmp-button app-cl-warn" (click)="clearSearch()">
+          <i class="material-symbols-outlined">close</i>
+        </button>
+      }
+    </div>
+  </div>
+
+  @for (person of filtered(); track person.resourceName) {
+    <div class="contact-card">
+      <span class="contact-name">
+        {{ person.names?.[0]?.displayName ?? '(No Name)' }}
+      </span>
+
+      @if (person.emailAddresses?.length) {
+        <span class="section-label">Emails</span>
+        @for (email of person.emailAddresses!; track email.value) {
+          <div class="item">
+            <span class="type">{{ email.type ?? '' }}:</span>{{ email.value }}
+          </div>
+        }
+      }
+
+      @if (person.phoneNumbers?.length) {
+        <span class="section-label">Phones</span>
+        @for (phone of person.phoneNumbers!; track phone.value) {
+          <div class="item">
+            <span class="type">{{ phone.type ?? '' }}:</span>{{ phone.value }}
+          </div>
+        }
+      }
+    </div>
+  } @empty {
+    <p>No contacts found.</p>
+  }
+</div>

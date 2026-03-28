@@ -1,0 +1,9 @@
+@if (connectionsRes.isLoading()) {
+  <p>Loading...</p>
+} @else if (connectionsRes.error()) {
+  <p>Error: {{ connectionsRes.error()?.message ?? (connectionsRes.error() | json) }}</p>
+} @else {
+  <app-contacts-list
+    [connections]="connectionsRes.value()?.connections ?? []"
+  />
+}

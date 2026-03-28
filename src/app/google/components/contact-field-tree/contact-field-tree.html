@@ -1,0 +1,96 @@
+<div class="form-container">
+  <div class="field-row">
+    <label>Given Name*</label>
+    <input
+      class="app-cmp-input"
+      placeholder="Given Name"
+      [value]="givenName()"
+      (input)="givenName.set($any($event.target).value); dirty.set(true)"
+    />
+  </div>
+
+  <div class="field-row">
+    <label>Family Name</label>
+    <input
+      class="app-cmp-input"
+      placeholder="Family Name"
+      [value]="familyName()"
+      (input)="familyName.set($any($event.target).value); dirty.set(true)"
+    />
+  </div>
+
+  <div class="section">
+    <button type="button" class="app-cmp-button" (click)="addEmail()">
+      <i class="material-symbols-outlined">add</i> Email
+    </button>
+
+    @for (email of emails(); track $index) {
+      <div class="entry-row">
+        <label>Type*</label>
+        <input
+          class="app-cmp-input type-input"
+          placeholder="e.g., home"
+          [value]="email.type"
+          (input)="updateEmail($index, 'type', $any($event.target).value)"
+        />
+        <label>Email*</label>
+        <input
+          class="app-cmp-input"
+          placeholder="Email*"
+          [value]="email.value"
+          (input)="updateEmail($index, 'value', $any($event.target).value)"
+        />
+        <button
+          type="button"
+          class="app-cmp-button app-cl-warn"
+          [disabled]="emails().length <= 1"
+          (click)="removeEmail($index)"
+        >
+          <i class="material-symbols-outlined">delete</i>
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="section">
+    <button type="button" class="app-cmp-button" (click)="addPhone()">
+      <i class="material-symbols-outlined">add</i> Phone Number
+    </button>
+
+    @for (phone of phones(); track $index) {
+      <div class="entry-row">
+        <label>Type*</label>
+        <input
+          class="app-cmp-input type-input"
+          placeholder="e.g., home"
+          [value]="phone.type"
+          (input)="updatePhone($index, 'type', $any($event.target).value)"
+        />
+        <label>Phone*</label>
+        <input
+          class="app-cmp-input"
+          placeholder="Phone*"
+          [value]="phone.value"
+          (input)="updatePhone($index, 'value', $any($event.target).value)"
+        />
+        <button
+          type="button"
+          class="app-cmp-button app-cl-warn"
+          [disabled]="phones().length <= 1"
+          (click)="removePhone($index)"
+        >
+          <i class="material-symbols-outlined">delete</i>
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="actions">
+    <button type="button" class="app-cmp-button app-cl-primary" (click)="onSave()">
+      <i class="material-symbols-outlined">save</i> Save
+    </button>
+    <button type="button" class="app-cmp-button app-cl-warn" (click)="onCancel()">
+      <i class="material-symbols-outlined">cancel</i> Cancel
+    </button>
+  </div>
+</div>
